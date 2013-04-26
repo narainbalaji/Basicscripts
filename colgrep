@@ -1,0 +1,19 @@
+COUNT=1
+while getopts ":h:" OPTION
+do
+     case $OPTION in
+        h)
+          COUNT=$OPTARG
+          ;;
+        ?)
+          echo "Invalid argument"
+          echo "Usage: colgrep -h <number_of_header_lines> text_to_grep"
+          exit 1
+          ;;
+     esac
+done
+
+#Shift the parameters by the number of arguments
+shift $(( OPTIND - 1 ))
+
+tee >(head -n $COUNT) >(grep $1) > /dev/null
