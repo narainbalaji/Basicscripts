@@ -15,9 +15,15 @@ echo "**************************************"
 echo
 
 #Custom aliases
+
+
+#Monitor control commands
+#Thanks to http://egloo.wordpress.com/2008/10/20/using-a-video-projector-with-linux/
+
 alias screen_saver_off="xset s off"
 alias screen_saver_on="xset s on"
 alias detect_displays="xrandr -q"
+
 function cloned() {
  xrandr --output $1 --auto --output $2 --auto --same-as $1
 }
