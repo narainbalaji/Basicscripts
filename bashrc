@@ -55,22 +55,3 @@ function onlyd() {
  cloned $1 $2
  offd $1
 }
-echo
-
-#Custom aliases
-alias screen_saver_off="xset s off"
-alias screen_saver_on="xset s on"
-alias detect_displays="xrandr -q"
-function cloned() {
- xrandr --output $1 --auto --output $2 --auto --same-as $1
-}
-function extendd() {
- xrandr --output $1 --auto --output $2 --auto --right-of $1
-}
-function offd() {
- xrandr --output $1 --off
-}
-function onlyd() {
- cloned $1 $2
- offd $1
-}
