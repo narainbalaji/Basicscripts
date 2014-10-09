@@ -1,14 +1,10 @@
 #!/bin/bash
-
-# Checks the repositories under the Src folder and reports whether they have any commits or uncommited changes
-
-WD=~/Src/
-
-for directory in `find $WD`
+WD=$1
+for directory in `find $(cd $WD | pwd)  -maxdepth 1 `
 do
-  if [ -d $directory -a -d $directory/.git ];then
+  if [[ -d $directory && -d $directory/.git ]]; then
      cd $directory
-     if [ -n "$(git status --porcelain)" ]; then
+     if [[ $(git status --porcelain | grep -v "??" | wc -l) -gt 0 ]]; then
        echo "Uncommited changes in "$directory
      fi
      if [ -n "$(git status | grep 'ahead of')" ]; then
